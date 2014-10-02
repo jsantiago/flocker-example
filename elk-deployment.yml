@@ -1,0 +1,5 @@
+# From https://docs.clusterhq.com/en/0.2.1/_downloads/elk-deployment.yml
+"version": 1
+"nodes":
+  "172.16.255.250": ["logstash", "kibana"]
+  "172.16.255.251": ["elasticsearch"]
