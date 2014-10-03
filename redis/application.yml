@@ -1,0 +1,10 @@
+# vim: ts=2:sw=2
+"version": 1
+"applications":
+  "redis-example":
+    "image": "redis"
+    "ports":
+    - "internal": 6739
+      "external": 6739
+    "volume":
+      "mountpoint": "/data"

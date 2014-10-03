@@ -11,7 +11,7 @@ Start Vagrant
 
 Deploy Mongo to 172.16.255.250
 
-    $ flocker-deploy volume-deployment.yml volume-application.yml
+    $ flocker-deploy mongo/deployment.yml mongo/application.yml
     $ ssh root@172.16.255.250 docker ps
 
 Insert some data
@@ -23,7 +23,7 @@ Insert some data
 
 Move Mongo to 172.16.255.251
 
-    $ flocker-deploy volume-deployment-moved.yml volume-application.yml
+    $ flocker-deploy mongo/deployment-moved.yml mongo/application.yml
     $ ssh root@172.16.255.251 docker ps
 
 Confirm data moved to new host
@@ -43,17 +43,17 @@ Pull Docker containers
 
 Deploy Postgres to 172.16.255.250
 
-    $ flocker-deploy postgres-deployment.yml postgres-application.yml
+    $ flocker-deploy postgres/deployment.yml postgres/application.yml
     $ ssh root@172.16.255.250 docker ps
 
 Insert some data
 
-    $ psql postgres --host 172.16.255.250 --port 5432 --username postgres -f postgres_test.sql
+    $ psql postgres --host 172.16.255.250 --port 5432 --username postgres -f postgres/test.sql
     $ psql postgres --host 172.16.255.250 --port 5432 --username postgres -c 'select * from example'
 
 Move Postgres to 172.16.255.251
 
-    $ flocker-deploy postgres-deployment-moved.yml postgres-application.yml
+    $ flocker-deploy postgres/deployment-moved.yml postgres/application.yml
     $ ssh root@172.16.255.251 docker ps
 
 Confirm data moved to new host
@@ -76,7 +76,7 @@ Pull Docker containers
 
 Deploy ELK
 
-    $ flocker-deploy elk-deployment.yml elk-application.yml
+    $ flocker-deploy elk/deployment.yml elk/application.yml
     $ ssh root@172.16.255.250 docker ps
     $ ssh root@172.16.255.251 docker ps
 
@@ -94,6 +94,10 @@ Generate some logs
     telnet> quit
 
     $ open http://172.16.255.250/
+
+Delete all the logs
+
+    $ curl -XDELETE "http://172.16.255.250:9200/*"
 
 For more information, see https://docs.clusterhq.com/en/0.2.1/gettingstarted/examples/linking.html
 
